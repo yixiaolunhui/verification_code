@@ -24,7 +24,7 @@ enum CodeStyle {
 /// 验证码
 class VerificationCode extends StatefulWidget {
   const VerificationCode({
-    Key? key,
+    super.key,
     this.maxLength = 4,
     this.height = 50,
     this.mode = CodeMode.text,
@@ -39,7 +39,7 @@ class VerificationCode extends StatefulWidget {
     this.itemWidth = 50,
     this.itemSpace = 16,
     required this.onCompleted,
-  }) : super(key: key);
+  });
 
   final int maxLength;
 
