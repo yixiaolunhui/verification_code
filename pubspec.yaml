@@ -1,7 +1,6 @@
 name: verification_code
 description: The project is a Dart library for SMS verification codes.
 version: 1.0.0
-author: yixiaolunhui weilong.zhou01@gmail.com
 homepage: https://github.com/yixiaolunhui/verification_code
 
 environment:
@@ -15,7 +14,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.2
+  flutter_lints: ^3.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
