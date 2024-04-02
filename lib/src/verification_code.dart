@@ -3,17 +3,13 @@ library verification_code;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-/*
- * 模式
- */
+/// 模式
 enum CodeMode {
   //文字
   text
 }
 
-/*
- * 样式
- */
+/// 样式
 enum CodeStyle {
   //表格
   form,
@@ -25,11 +21,9 @@ enum CodeStyle {
   circle
 }
 
-/*
- * 验证码
- */
+/// 验证码
 class VerificationCode extends StatefulWidget {
-  VerificationCode({
+  const VerificationCode({
     Key? key,
     this.maxLength = 4,
     this.height = 50,
@@ -45,53 +39,48 @@ class VerificationCode extends StatefulWidget {
     this.itemWidth = 50,
     this.itemSpace = 16,
     required this.onCompleted,
-  }) : super(key: key) {
-    //如果是表格样式，就不设置Item之间的距离
-    if (style == CodeStyle.form) {
-      itemSpace = 0;
-    }
-  }
+  }) : super(key: key);
 
-  late int maxLength;
+  final int maxLength;
 
   //高度
-  late double height;
+  final double height;
 
   //验证码模式
-  late CodeMode mode;
+  final CodeMode mode;
 
   //验证码样式
-  late CodeStyle style;
+  final CodeStyle style;
 
   //背景色
-  late Color codeBgColor;
+  final Color codeBgColor;
 
   //边框宽度
-  late double borderWidth;
+  final double borderWidth;
 
   //边框默认颜色
-  late Color borderColor;
+  final Color borderColor;
 
   //边框选中颜色
-  late Color borderSelectColor;
+  final Color borderSelectColor;
 
   //边框圆角
-  late double borderRadius;
+  final double borderRadius;
 
   //内容颜色
-  late Color contentColor;
+  final Color contentColor;
 
   //内容大小
-  late double contentSize;
+  final double contentSize;
 
   // 单个Item宽度
-  late double itemWidth;
+  final double itemWidth;
 
   //Item之间的间隙
-  late int itemSpace;
+  final int itemSpace;
 
   //完成回调
-  ValueChanged<String> onCompleted;
+  final ValueChanged<String> onCompleted;
 
   @override
   State<VerificationCode> createState() => _VerificationCodeState();
@@ -101,6 +90,11 @@ class _VerificationCodeState extends State<VerificationCode> {
   FocusNode focusNode = FocusNode();
 
   TextEditingController controller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -249,6 +243,10 @@ class CodeCustomPainter extends CustomPainter {
       textAlign: TextAlign.center,
       textDirection: TextDirection.ltr,
     );
+
+    if (style == CodeStyle.form) {
+      itemSpace = 0;
+    }
   }
 
   @override
