@@ -6,7 +6,7 @@ The project is a Dart library for SMS verification codes.
 <img src="https://github.com/yixiaolunhui/verification_code/blob/master/img/code.gif" width="300"/>
 
 ## Getting started
-    verification_code:^1.0.0
+    verification_code:^0.0.1
 
 
 ## Usage
