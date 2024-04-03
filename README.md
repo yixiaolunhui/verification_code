@@ -1,12 +1,12 @@
-## Des
+## Description
 The project is a Dart library for SMS verification codes.
 
 ## Features
 
-<img src="https://github.com/yixiaolunhui/verification_code/blob/master/img/code.gif" width="300"/>
+<img src="https://raw.githubusercontent.com/yixiaolunhui/verification_code/master/img/code.gif" width="300"/>
 
 ## Getting started
-    verification_code:^0.0.1
+    verification_code:^0.0.2
 
 
 ## Usage
@@ -24,6 +24,12 @@ The project is a Dart library for SMS verification codes.
 ```
 
 ## Code Style
+| style     |                     code                     |    
+|:----------|:--------------------------------------------:|
+| form      |   VerificationCode(style: CodeStyle.form)    |  
+| rectangle | VerificationCode(style: CodeStyle.rectangle) |  
+| line      |   VerificationCode(style: CodeStyle.line)    |  
+| circle    |  VerificationCode(style: CodeStyle.circle)   |  
 
 
 

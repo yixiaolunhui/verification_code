@@ -160,47 +160,47 @@ class _VerificationCodeState extends State<VerificationCode> {
 }
 
 class CodeCustomPainter extends CustomPainter {
-  double width;
-  double height;
-  int maxLength;
+  final double width;
+  final double height;
+  final int maxLength;
 
   //验证码模式
-  late CodeMode mode;
+  final CodeMode mode;
 
   //验证码样式
-  late CodeStyle style;
+  final CodeStyle style;
 
   //背景色
-  Color codeBgColor;
+  final Color codeBgColor;
 
   //边框宽度
-  double borderWidth;
+  final double borderWidth;
 
   //边框默认颜色
-  Color borderColor;
+  final Color borderColor;
 
   //边框选中颜色
-  Color borderSelectColor;
+  final Color borderSelectColor;
 
   //边框圆角
-  double borderRadius;
+  final double borderRadius;
 
   //内容颜色
-  Color contentColor;
+  final Color contentColor;
 
   //内容大小
-  double contentSize;
+  final double contentSize;
 
   // 单个Item宽度
   double itemWidth;
 
   //Item之间的间隙
-  int itemSpace;
+  final int itemSpace;
 
   //焦点
-  FocusNode focusNode;
+  final FocusNode focusNode;
 
-  TextEditingController controller;
+  final TextEditingController controller;
 
   //线路画笔
   late Paint linePaint;
@@ -213,6 +213,8 @@ class CodeCustomPainter extends CustomPainter {
 
   //左右间距值
   double space = 0;
+
+  int codeItemSpace = 0;
 
   CodeCustomPainter(
     this.maxLength,
@@ -244,9 +246,7 @@ class CodeCustomPainter extends CustomPainter {
       textDirection: TextDirection.ltr,
     );
 
-    if (style == CodeStyle.form) {
-      itemSpace = 0;
-    }
+    codeItemSpace = (style == CodeStyle.form) ? 0 : itemSpace;
   }
 
   @override
@@ -255,14 +255,15 @@ class CodeCustomPainter extends CustomPainter {
     currentIndex = controller.text.length;
     //Item宽度（这里判断如果设置了宽度并且合理就使用当前设置的宽度，否则平均计算）
     if (itemWidth != -1 &&
-        (itemWidth * maxLength + itemSpace * (maxLength - 1)) <= width) {
+        (itemWidth * maxLength + codeItemSpace * (maxLength - 1)) <= width) {
       itemWidth = itemWidth;
     } else {
-      itemWidth = ((width - itemSpace * (maxLength - 1)) / maxLength);
+      itemWidth = ((width - codeItemSpace * (maxLength - 1)) / maxLength);
     }
 
     //计算左右间距大小
-    space = (width - itemWidth * maxLength - itemSpace * (maxLength - 1)) / 2;
+    space =
+        (width - itemWidth * maxLength - codeItemSpace * (maxLength - 1)) / 2;
 
     //绘制样式
     switch (style) {
@@ -301,7 +302,7 @@ class CodeCustomPainter extends CustomPainter {
 
     //绘制表格中间分割线
     for (int i = 1; i < maxLength; i++) {
-      double startX = space + itemWidth * i + itemSpace * i;
+      double startX = space + itemWidth * i + codeItemSpace * i;
       double startY = 0;
       double stopY = height;
       canvas.drawLine(Offset(startX, startY), Offset(startX, stopY), linePaint);
@@ -315,7 +316,7 @@ class CodeCustomPainter extends CustomPainter {
         if (i == 0) {
           left = (space + itemWidth * i);
         } else {
-          left = ((space + itemWidth * i + itemSpace * i));
+          left = ((space + itemWidth * i + codeItemSpace * i));
         }
         linePaint.color = borderSelectColor;
         //第一个
@@ -353,7 +354,7 @@ class CodeCustomPainter extends CustomPainter {
       if (i == 0) {
         left = space + i * itemWidth;
       } else {
-        left = space + i * itemWidth + itemSpace * i;
+        left = space + i * itemWidth + codeItemSpace * i;
       }
       Rect rect = Rect.fromLTRB(left, 0, left + itemWidth, height);
       RRect rRect =
@@ -384,7 +385,7 @@ class CodeCustomPainter extends CustomPainter {
       else {
         linePaint.color = borderColor;
       }
-      double startX = space + itemWidth * i + itemSpace * i;
+      double startX = space + itemWidth * i + codeItemSpace * i;
       double startY = height - borderWidth;
       double stopX = startX + itemWidth;
       double stopY = startY;
@@ -402,7 +403,7 @@ class CodeCustomPainter extends CustomPainter {
       if (i == 0) {
         left = space + i * itemWidth;
       } else {
-        left = space + i * itemWidth + itemSpace * i;
+        left = space + i * itemWidth + codeItemSpace * i;
       }
       //圆心坐标
       double cx = left + itemWidth / 2.0;
@@ -434,7 +435,7 @@ class CodeCustomPainter extends CustomPainter {
             textPainter.layout();
             double x = space +
                 itemWidth * i +
-                itemSpace * i +
+                codeItemSpace * i +
                 (itemWidth - textPainter.width) / 2;
             double y = (height - textPainter.height) / 2;
             textPainter.paint(canvas, Offset(x, y));
