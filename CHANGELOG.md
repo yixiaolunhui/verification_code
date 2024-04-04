@@ -1,3 +1,8 @@
+## 0.0.3
+
+* Fixed an issue with setting contentColor and contentSize.
+
+
 ## 0.0.2
 
 * optimize code

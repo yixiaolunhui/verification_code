@@ -430,7 +430,7 @@ class CodeCustomPainter extends CustomPainter {
             String code = textStr[i].toString();
             textPainter.text = TextSpan(
               text: code,
-              style: const TextStyle(color: Colors.red, fontSize: 30),
+              style: TextStyle(color: contentColor, fontSize: contentSize),
             );
             textPainter.layout();
             double x = space +

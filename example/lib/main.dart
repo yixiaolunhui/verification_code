@@ -77,6 +77,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 maxLength: 6,
                 itemWidth: 30,
                 itemSpace: 20,
+                contentSize: 30,
+                contentColor: Colors.blue,
                 onCompleted: (String value) {
                   print("CodeStyle.line value=$value");
                 },
@@ -98,4 +100,3 @@ class _MyHomePageState extends State<MyHomePage> {
         ));
   }
 }
-
