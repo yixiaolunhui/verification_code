@@ -1,6 +1,6 @@
 name: verification_code
 description: The project is a Dart library for SMS verification codes, Supports four types of display form, rectangle, line, and circle.
-version: 0.0.3
+version: 0.0.4
 homepage: https://github.com/yixiaolunhui/verification_code
 
 environment:

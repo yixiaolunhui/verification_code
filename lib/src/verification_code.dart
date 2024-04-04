@@ -39,6 +39,7 @@ class VerificationCode extends StatefulWidget {
     this.itemWidth = 50,
     this.itemSpace = 16,
     required this.onCompleted,
+    this.onChanged,
   });
 
   final int maxLength;
@@ -81,6 +82,9 @@ class VerificationCode extends StatefulWidget {
 
   //完成回调
   final ValueChanged<String> onCompleted;
+
+  //输入回调
+  final ValueChanged<String>? onChanged;
 
   @override
   State<VerificationCode> createState() => _VerificationCodeState();
@@ -143,6 +147,7 @@ class _VerificationCodeState extends State<VerificationCode> {
                 FilteringTextInputFormatter.digitsOnly,
               ],
               onChanged: (value) {
+                widget.onChanged?.call(value);
                 if (value.isNotEmpty && value.length == widget.maxLength) {
                   widget.onCompleted.call(value);
                 }
